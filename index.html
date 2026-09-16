@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Free Online Tools - calculators and useful tools for everyday use.">
+<title>Free Online Tools - Free Calculators</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f5f7fb;color:#18212f}
+header{background:linear-gradient(135deg,#315bea,#6c3ee8);color:#fff;padding:34px 18px;text-align:center}
+header h1{margin:0 0 8px;font-size:32px}header p{margin:0;opacity:.92}
+nav{background:#fff;box-shadow:0 2px 10px #0001;position:sticky;top:0;z-index:5;padding:12px;text-align:center}
+nav a{color:#315bea;text-decoration:none;margin:0 10px;font-weight:700}
+.container{max-width:1100px;margin:25px auto;padding:0 16px}
+.search{width:100%;padding:14px 16px;border:1px solid #d8ddea;border-radius:12px;font-size:16px;margin-bottom:22px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.card{background:#fff;border:1px solid #e4e8f0;border-radius:16px;padding:20px;box-shadow:0 5px 18px #0000000a}
+.card h3{margin:0 0 8px}.card p{color:#667085;min-height:42px}.btn{border:0;border-radius:10px;padding:11px 15px;background:#315bea;color:white;font-weight:700;cursor:pointer}
+.tool{display:none;margin:25px 0;background:#fff;border-radius:18px;padding:22px;box-shadow:0 5px 20px #00000012}
+.tool.active{display:block}.tool h2{margin-top:0}
+.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+label{font-weight:700;font-size:14px}input,select{width:100%;padding:12px;margin-top:6px;border:1px solid #ccd3df;border-radius:9px;font-size:16px}
+.result{margin-top:15px;background:#eef3ff;padding:15px;border-radius:10px;font-weight:700}
+.close{float:right;background:#eee;color:#333}
+footer{text-align:center;padding:30px;color:#667085}
+@media(max-width:500px){header h1{font-size:26px}}
+</style>
+</head>
+<body>
+<header><h1>Free Online Tools</h1><p>Fast, simple & free calculators for everyday use</p></header>
+<nav><a href="#tools">Tools</a><a href="#about">About</a></nav>
+<main class="container" id="tools">
+<input class="search" id="search" placeholder="Search a tool...">
+<div class="grid" id="cards"></div>
+
+<section class="tool" id="tool-age">
+<button class="btn close" onclick="closeTools()">Close</button><h2>Age Calculator</h2>
+<div class="row"><label>Date of Birth<input type="date" id="dob"></label><label>Calculate Up To<input type="date" id="ageDate"></label></div>
+<button class="btn" onclick="ageCalc()">Calculate</button><div class="result" id="ageResult"></div></section>
+
+<section class="tool" id="tool-percentage">
+<button class="btn close" onclick="closeTools()">Close</button><h2>Percentage Calculator</h2>
+<div class="row"><label>Value<input type="number" id="p1"></label><label>Total<input type="number" id="p2"></label></div>
+<button class="btn" onclick="percentageCalc()">Calculate</button><div class="result" id="percentageResult"></div></section>
+
+<section class="tool" id="tool-emi">
+<button class="btn close" onclick="closeTools()">Close</button><h2>EMI Calculator</h2>
+<div class="row"><label>Loan Amount (₹)<input type="number" id="loan"></label><label>Annual Interest (%)<input type="number" step="0.01" id="rate"></label><label>Tenure (years)<input type="number" id="years"></label></div>
+<button class="btn" onclick="emiCalc()">Calculate</button><div class="result" id="emiResult"></div></section>
+
+<section class="tool" id="tool-gst">
+<button class="btn close" onclick="closeTools()">Close</button><h2>GST Calculator</h2>
+<div class="row"><label>Amount (₹)<input type="number" id="gstAmt"></label><label>GST Rate (%)<input type="number" value="18" id="gstRate"></label></div>
+<button class="btn" onclick="gstCalc()">Calculate</button><div class="result" id="gstResult"></div></section>
+
+<section class="tool" id="tool-discount">
+<button class="btn close" onclick="closeTools()">Close</button><h2>Discount Calculator</h2>
+<div class="row"><label>Original Price (₹)<input type="number" id="price"></label><label>Discount (%)<input type="number" id="disc"></label></div>
+<button class="btn" onclick="discountCalc()">Calculate</button><div class="result" id="discResult"></div></section>
+
+<section class="tool" id="tool-fuel">
+<button class="btn close" onclick="closeTools()">Close</button><h2>Fuel Cost Calculator</h2>
+<div class="row"><label>Distance (km)<input type="number" id="distance"></label><label>Mileage (km/l)<input type="number" id="mileage"></label><label>Fuel Price (₹/l)<input type="number" id="fuelPrice"></label></div>
+<button class="btn" onclick="fuelCalc()">Calculate</button><div class="result" id="fuelResult"></div></section>
+
+<section class="tool" id="tool-date">
+<button class="btn close" onclick="closeTools()">Close</button><h2>Date Difference Calculator</h2>
+<div class="row"><label>Start Date<input type="date" id="start"></label><label>End Date<input type="date" id="end"></label></div>
+<button class="btn" onclick="dateCalc()">Calculate</button><div class="result" id="dateResult"></div></section>
+
+<section class="tool" id="tool-unit">
+<button class="btn close" onclick="closeTools()">Close</button><h2>Unit Converter</h2>
+<div class="row"><label>Value<input type="number" id="unitVal"></label><label>From<select id="from"><option value="km">Kilometre</option><option value="m">Metre</option><option value="mile">Mile</option><option value="kg">Kilogram</option><option value="lb">Pound</option></select></label><label>To<select id="to"><option value="km">Kilometre</option><option value="m">Metre</option><option value="mile">Mile</option><option value="kg">Kilogram</option><option value="lb">Pound</option></select></label></div>
+<button class="btn" onclick="unitCalc()">Convert</button><div class="result" id="unitResult"></div></section>
+
+<section class="tool" id="tool-loan">
+<button class="btn close" onclick="closeTools()">Close</button><h2>Loan Calculator</h2>
+<div class="row"><label>Principal (₹)<input type="number" id="lp"></label><label>Interest (%)<input type="number" step=".01" id="lr"></label><label>Years<input type="number" id="ly"></label></div>
+<button class="btn" onclick="loanCalc()">Calculate</button><div class="result" id="loanResult"></div></section>
+
+<section class="tool" id="tool-trip">
+<button class="btn close" onclick="closeTools()">Close</button><h2>Trip Cost Calculator</h2>
+<div class="row"><label>Distance (km)<input type="number" id="td"></label><label>Mileage (km/l)<input type="number" id="tm"></label><label>Fuel Price (₹/l)<input type="number" id="tf"></label><label>Other Cost (₹)<input type="number" id="to" value="0"></label></div>
+<button class="btn" onclick="tripCalc()">Calculate</button><div class="result" id="tripResult"></div></section>
+</main>
+<section class="container card" id="about"><h2>About Free Online Tools</h2><p>Free Online Tools provides quick calculators for personal, travel and everyday calculations. Results are estimates and should be checked when used for financial decisions.</p></section>
+<footer>© 2026 Free Online Tools · Free to use</footer>
+<script>
+const tools=[
+['age','Age Calculator','Calculate age from date of birth.'],['percentage','Percentage Calculator','Find percentages quickly.'],['emi','EMI Calculator','Estimate monthly loan EMI.'],['gst','GST Calculator','Calculate GST amount and total.'],['discount','Discount Calculator','Find discount and final price.'],['fuel','Fuel Cost Calculator','Estimate fuel required and cost.'],['date','Date Difference Calculator','Find the number of days between dates.'],['unit','Unit Converter','Convert common units.'],['loan','Loan Calculator','Estimate loan payment.'],['trip','Trip Cost Calculator','Estimate total travel cost.']];
+const cards=document.getElementById('cards');
+function render(filter=''){cards.innerHTML=tools.filter(x=>(x[1]+' '+x[2]).toLowerCase().includes(filter.toLowerCase())).map(x=>`<div class="card"><h3>${x[1]}</h3><p>${x[2]}</p><button class="btn" onclick="openTool('${x[0]}')">Open Tool</button></div>`).join('')}
+function openTool(id){closeTools();document.getElementById('tool-'+id).classList.add('active');document.getElementById('tool-'+id).scrollIntoView({behavior:'smooth',block:'start'})}
+function closeTools(){document.querySelectorAll('.tool').forEach(x=>x.classList.remove('active'))}
+document.getElementById('search').oninput=e=>render(e.target.value);render();
+function money(n){return '₹'+n.toLocaleString('en-IN',{maximumFractionDigits:2})}
+function ageCalc(){let d=new Date(dob.value), t=new Date(ageDate.value||new Date());if(isNaN(d)||d>t){ageResult.textContent='Please enter valid dates.';return}let y=t.getFullYear()-d.getFullYear(),m=t.getMonth()-d.getMonth(),day=t.getDate()-d.getDate();if(day<0){m--;day+=new Date(t.getFullYear(),t.getMonth(),0).getDate()}if(m<0){y--;m+=12}ageResult.textContent=`Age: ${y} years, ${m} months, ${day} days`}
+function percentageCalc(){let a=+p1.value,b=+p2.value;percentageResult.textContent=b?`${a} is ${(a/b*100).toFixed(2)}% of ${b}.`:'Please enter a non-zero total.'}
+function emi(n,r,months){r/=1200;return r? n*r*Math.pow(1+r,months)/(Math.pow(1+r,months)-1):n/months}
+function emiCalc(){let n=+loan.value,y=+years.value,m=y*12,e=emi(n,+rate.value,m);emiResult.textContent=`Monthly EMI: ${money(e)} · Total Payment: ${money(e*m)} · Interest: ${money(e*m-n)}`}
+function gstCalc(){let a=+gstAmt.value,r=+gstRate.value,g=a*r/100;gstResult.textContent=`GST: ${money(g)} · Total: ${money(a+g)}`}
+function discountCalc(){let a=+price.value,r=+disc.value,d=a*r/100;discResult.textContent=`Discount: ${money(d)} · Final Price: ${money(a-d)}`}
+function fuelCalc(){let d=+distance.value,m=+mileage.value,p=+fuelPrice.value;if(m>0)fuelResult.textContent=`Fuel Needed: ${(d/m).toFixed(2)} L · Cost: ${money(d/m*p)}`}
+function dateCalc(){let a=new Date(start.value),b=new Date(end.value);if(a>b)[a,b]=[b,a];let days=Math.round((b-a)/86400000);dateResult.textContent=`Difference: ${days} day(s)`}
+const factors={m:1,km:1000,mile:1609.344,kg:1,lb:.45359237};
+function unitCalc(){let a=+unitVal.value,f=from.value,t=to.value;if((f==='kg')!==(t==='kg') && (f==='lb')!==(t==='lb') && (f==='m'||f==='km'||f==='mile')&&(t==='m'||t==='km'||t==='mile'))unitResult.textContent=`Result: ${(a*factors[f]/factors[t]).toFixed(6)} ${t}`;else if((f==='kg'||f==='lb')&&(t==='kg'||t==='lb'))unitResult.textContent=`Result: ${(a*factors[f]/factors[t]).toFixed(6)} ${t}`;else unitResult.textContent='Please convert within the same unit family.'}
+function loanCalc(){let n=+lp.value,y=+ly.value,e=emi(n,+lr.value,y*12);loanResult.textContent=`Monthly Payment: ${money(e)} · Total: ${money(e*y*12)}`}
+function tripCalc(){let d=+td.value,m=+tm.value,f=+tf.value,o=+to.value;if(m>0)tripResult.textContent=`Fuel Cost: ${money(d/m*f)} · Total Trip Cost: ${money(d/m*f+o)}`}
+</script>
+</body></html>
